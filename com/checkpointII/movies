@@ -1,0 +1,35 @@
+/*Write an SQL script to create a database schema for a movie database. 
+Include tables for `Movies`, `Actors`, and `Directors`. Define relationships and attributes for each table. 
+Push the script to GitHub.
+*/
+CREATE DATABASE movie_db;
+
+USE movie_db;
+
+CREATE TABLE movies(
+	movie_id INT AUTO_INCREMENT NOT NULL,
+    movie_name VARCHAR(255),
+    director_id INT,
+    PRIMARY KEY(movie_id),
+    FOREIGN KEY(director_id) REFERENCES directors(director_id)
+);
+CREATE TABLE actors(
+	actors_id INT PRIMARY KEY,
+    actor_name VARCHAR(255)
+    );
+    
+CREATE TABLE directors(
+	director_id INT PRIMARY KEY,
+    director_name VARCHAR(255)
+);   
+CREATE TABLE movies_actors(
+	movie_id INT REFERENCES movies(movie_id),
+    actors_id INT REFERENCES actors(actors_id)
+    );
+    
+  INSERT INTO movies(movie_name,director_id)
+	VALUES("fidelis",1);
+    
+    DELETE FROM movies WHERE production_year>10;
+    
+    SELECT movie_name,actor_name FROM movies MA INNER JOIN movies_actors MA ON M.movies_id = MA.movie_id;
